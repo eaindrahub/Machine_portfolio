@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Your Name | Fabrication Specialist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --panel: #F3F4F5;
+    --ink: #111417;
+    --muted: #666E75;
+    --line: #E1E4E6;
+    --heat: #E2661D;
+    --display: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+    --body: "Barlow", "Helvetica Neue", Arial, sans-serif;
+    color-scheme: light;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--body); font-size: 1.0625rem; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  img { max-width: 100%; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--heat); outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+
+  .wrap { width: min(1200px, 100% - 3rem); margin-inline: auto; }
+  p { margin: 0 0 1rem; }
+
+  h1, h2, h3, h4 { font-family: var(--display); margin: 0; }
+  h1 {
+    font-weight: 700; text-transform: uppercase;
+    font-size: clamp(3.6rem, 14vw, 11rem); line-height: 0.88; letter-spacing: 0;
+  }
+  h2 {
+    font-weight: 700; text-transform: uppercase;
+    font-size: clamp(2.5rem, 6.5vw, 5rem); line-height: 0.95; letter-spacing: 0.005em;
+  }
+  h3 { font-weight: 600; text-transform: uppercase; font-size: 1.5rem; line-height: 1.1; letter-spacing: 0.02em; }
+  .muted { color: var(--muted); }
+
+  /* Header */
+  .site-header {
+    position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,0.94);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  .site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 68px; flex-wrap: wrap; }
+  .brand { font-family: var(--display); font-weight: 700; text-transform: uppercase; font-size: 1.4rem; letter-spacing: 0.06em; text-decoration: none; }
+  .nav { display: flex; gap: 1.6rem; align-items: center; flex-wrap: wrap; }
+  .nav a { text-decoration: none; font-size: 0.95rem; font-weight: 500; color: var(--muted); }
+  .nav a:hover { color: var(--ink); }
+  .nav .cv { color: var(--ink); border: 1px solid var(--ink); padding: 0.4rem 0.95rem; }
+  .nav .cv:hover { background: var(--ink); color: #fff; }
+
+  /* Hero */
+  .hero { padding: clamp(3rem, 8vw, 6.5rem) 0 0; }
+  .role { color: var(--heat); font-weight: 600; margin: 0 0 1.25rem; }
+  .hero-row { display: grid; gap: 1.75rem; margin: clamp(1.75rem, 4vw, 3rem) 0 clamp(2rem, 5vw, 3.5rem); align-items: end; }
+  @media (min-width: 820px) { .hero-row { grid-template-columns: 1fr auto; } }
+  .hero-row p { font-size: 1.25rem; max-width: 30rem; margin: 0; color: var(--muted); }
+  .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .btn { display: inline-block; padding: 0.85rem 1.6rem; font-family: var(--display); font-weight: 600; font-size: 1.15rem; text-transform: uppercase; letter-spacing: 0.06em; text-decoration: none; border: 1.5px solid var(--ink); transition: background .2s, color .2s, border-color .2s; }
+  .btn-solid { background: var(--ink); color: #fff; }
+  .btn-solid:hover { background: var(--heat); border-color: var(--heat); }
+  .btn-line:hover { background: var(--ink); color: #fff; }
+
+  .numbers { display: grid; grid-template-columns: repeat(2, 1fr); margin: clamp(2rem, 5vw, 3.5rem) 0 0; padding: 0; border-top: 1px solid var(--ink); }
+  @media (min-width: 760px) { .numbers { grid-template-columns: repeat(4, 1fr); } }
+  .numbers div { padding: 1.5rem 1rem 0 0; }
+  .numbers dd { margin: 0; font-family: var(--display); font-weight: 600; font-size: clamp(3rem, 6vw, 4.8rem); line-height: 1; }
+  .numbers dt { margin-top: 0.4rem; color: var(--muted); font-size: 0.95rem; }
+
+  /* Sections */
+  section.block { padding: clamp(4.5rem, 11vw, 9rem) 0 0; }
+  .split { display: grid; gap: 2rem; }
+  @media (min-width: 900px) { .split { grid-template-columns: 1fr 2.4fr; gap: 4rem; } }
+  .split > h2 { font-size: clamp(2.2rem, 4vw, 3.2rem); }
+
+  /* Photo slots */
+  .shot { margin: 0; }
+  .shot .frame {
+    display: grid; place-items: center; text-align: center; overflow: hidden;
+    aspect-ratio: 4 / 5; color: var(--muted); font-size: 0.95rem;
+    background:
+      repeating-linear-gradient(100deg, transparent 0 3px, rgba(110,120,128,0.08) 3px 4px),
+      var(--panel);
+  }
+  .shot.land .frame { aspect-ratio: 3 / 2; }
+  .shot.wide .frame { aspect-ratio: 21 / 9; }
+  .shot.sq .frame { aspect-ratio: 1 / 1; }
+  .shot .frame small { display: block; font-size: 0.8rem; margin-top: 0.15rem; padding: 0 0.75rem; word-break: break-all; }
+  .shot .frame img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s ease; }
+  .shot:hover .frame img { transform: scale(1.03); }
+  .shot figcaption { margin-top: 0.65rem; font-size: 0.95rem; color: var(--muted); }
+  @media (max-width: 640px) { .shot.wide .frame { aspect-ratio: 4 / 3; } }
+
+  /* About */
+  .about-grid { display: grid; gap: 2.5rem; }
+  @media (min-width: 760px) { .about-grid { grid-template-columns: 1.6fr 1fr; align-items: end; gap: 3rem; } }
+  .statement { font-family: var(--display); font-weight: 500; font-size: clamp(1.8rem, 3.6vw, 2.8rem); line-height: 1.15; margin: 0 0 1.5rem; }
+
+  /* Work */
+  .project-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 1rem 2rem; margin: 0 0 clamp(2rem, 5vw, 3.5rem); padding-bottom: 1.25rem; border-bottom: 1px solid var(--ink); }
+  .project-head p { margin: 0; color: var(--muted); }
+  .gens { display: grid; gap: 2.5rem 1.5rem; }
+  @media (min-width: 820px) { .gens { grid-template-columns: repeat(3, 1fr); } }
+  .gen .tag { color: var(--heat); font-weight: 600; font-size: 0.95rem; margin: 1.1rem 0 0.15rem; }
+  .gen ul, .brand-row ul { list-style: none; margin: 0.9rem 0 0; padding: 0; }
+  .gen li, .brand-row li { padding: 0.5rem 0; border-top: 1px solid var(--line); color: var(--muted); }
+
+  .brands { margin-top: clamp(3.5rem, 8vw, 6rem); }
+  .brands > h3 { font-size: 1.25rem; margin-bottom: 1.25rem; }
+  .brand-row { display: grid; gap: 1.5rem; padding: 2rem 0; border-top: 1px solid var(--line); }
+  @media (min-width: 900px) { .brand-row { grid-template-columns: 1fr 3fr; gap: 3rem; } }
+  .brand-row h3 { font-size: 2rem; }
+  .row-shots { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+
+
+  /* Photo fitting for real photos */
+  .shot.wide .frame img { object-position: center 68%; }
+  .gens .shot .frame { aspect-ratio: 1 / 1; }
+  .gens .shot .frame img { object-position: center 55%; }
+  .shot.fit .frame { background: #fff; border: 1px solid var(--line); }
+  .shot.fit .frame img { object-fit: contain; background: #fff; }
+  .row-shots.mix { grid-template-columns: 1fr 1.9fr; align-items: start; }
+  .row-shots.two { grid-template-columns: repeat(2, 1fr); }
+  .row-shots.two .span-all { grid-column: 1 / -1; }
+  @media (max-width: 700px) { .row-shots.mix { grid-template-columns: 1fr; } }
+
+  /* Build gallery */
+  .strip-head { margin: clamp(3.5rem, 8vw, 6rem) 0 1.5rem; display: flex; justify-content: space-between; align-items: end; gap: 1rem; flex-wrap: wrap; }
+  .strip-head h3 { font-size: 2rem; }
+  .strip-head p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+  .strip {
+    display: flex; gap: 1.25rem; overflow-x: auto; scroll-snap-type: x mandatory;
+    padding-bottom: 1rem; padding-inline: max(1.5rem, calc(50% - 600px));
+    scroll-padding-inline: max(1.5rem, calc(50% - 600px));
+  }
+  .strip .shot { flex: 0 0 min(78vw, 460px); scroll-snap-align: start; }
+  .strip .shot .frame { aspect-ratio: 4 / 3; }
+
+  /* Problem solving */
+  .panel { background: var(--panel); margin-top: clamp(4.5rem, 11vw, 9rem); padding: clamp(3.5rem, 9vw, 7rem) 0; }
+  .panel h2 { margin-bottom: 1rem; }
+  .panel .lead { color: var(--muted); max-width: 34rem; font-size: 1.15rem; margin: 0 0 clamp(2.5rem, 6vw, 4rem); }
+  .steps { list-style: none; margin: 0; padding: 0; counter-reset: step; display: grid; gap: 2rem; }
+  @media (min-width: 820px) { .steps { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; } }
+  .steps li { counter-increment: step; border-top: 1px solid var(--ink); padding-top: 1rem; }
+  .steps li::before { content: counter(step); display: block; font-family: var(--display); font-weight: 600; font-size: 4rem; line-height: 1;  color: var(--heat); margin-bottom: 1rem; }
+  .steps p { margin: 0.5rem 0 0; color: var(--muted); }
+  .result { margin: clamp(2.5rem, 6vw, 4rem) 0 0; font-family: var(--display); font-weight: 600; font-size: clamp(1.5rem, 3vw, 2.2rem); letter-spacing: 0.02em; text-transform: uppercase; }
+
+  /* More work */
+  .more { margin-top: clamp(4.5rem, 11vw, 9rem); }
+  .more-item { display: grid; gap: 1.75rem; padding: 2.5rem 0; border-top: 1px solid var(--line); }
+  .more-item:first-of-type { border-top: 1px solid var(--ink); }
+  @media (min-width: 900px) { .more-item { grid-template-columns: 1fr 2.2fr; gap: 3.5rem; } }
+  .more-item p { color: var(--muted); max-width: 26rem; }
+  .more-item h3 { font-size: 2rem; margin-bottom: 0.75rem; }
+
+  /* Skills */
+  .skill-groups { display: grid; gap: 2rem; }
+  .skill-groups h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; padding: 0; list-style: none; }
+  .tags li { border: 1px solid var(--line); padding: 0.35rem 0.9rem; font-size: 0.97rem; }
+
+  /* History */
+  .history { list-style: none; margin: 0; padding: 0; }
+  .history li { display: grid; gap: 0.25rem 2rem; padding: 1.5rem 0; border-top: 1px solid var(--line); }
+  .history li:first-child { border-top: 1px solid var(--ink); }
+  @media (min-width: 700px) { .history li { grid-template-columns: 11rem 1fr; } }
+  .history .when { color: var(--muted); font-variant-numeric: tabular-nums; }
+  .history h3 { font-size: 1.5rem; }
+  .history p { margin: 0.25rem 0 0; color: var(--muted); }
+
+  /* Contact */
+  .contact { margin-top: clamp(4.5rem, 11vw, 9rem); background: var(--ink); color: #fff; padding: clamp(4rem, 10vw, 8rem) 0; }
+  .contact h2 { margin-bottom: clamp(1.5rem, 4vw, 2.5rem); }
+  .mail { display: inline-block; font-family: var(--display); font-weight: 500; font-size: clamp(1.8rem, 5.4vw, 3.8rem); letter-spacing: 0.01em; text-decoration: none; border-bottom: 3px solid var(--heat); word-break: break-all; }
+  .mail:hover { color: var(--heat); }
+  .contact-list { display: flex; flex-wrap: wrap; gap: 0.5rem 3rem; margin: 2.25rem 0 0; padding: 0; list-style: none; color: #B6BDC2; }
+  .contact-list a { text-decoration: none; }
+  .contact-list a:hover { color: #fff; }
+  footer { background: var(--ink); color: #7E868C; font-size: 0.9rem; padding: 0 0 1.75rem; }
+  footer .wrap { border-top: 1px solid #2A3036; padding-top: 1.25rem; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <!-- EDIT: replace "Your Name" here, in the page title above, and in the footer -->
+    <a class="brand" href="#top">Your Name</a>
+    <nav class="nav" aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#history">History</a>
+      <a href="#contact">Contact</a>
+      <a class="cv" href="cv.pdf" download>Download CV</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="role">Fabrication specialist and production supervisor</p>
+      <h1>I build<br>machines.</h1>
+
+      <div class="hero-row">
+        <p>From SolidWorks drawing to finished product. Over 10 years in welding and fabrication.</p>
+        <div class="actions">
+          <a class="btn btn-solid" href="#work">See my work</a>
+          <a class="btn btn-line" href="#contact">Contact</a>
+        </div>
+      </div>
+
+      <figure class="shot wide" data-src="images/hero.jpg" data-alt="Finished machines in the workshop">
+        <div class="frame"><span>Add photo<small>images/hero.jpg</small></span></div>
+      </figure>
+
+      <dl class="numbers">
+        <div><dd>10+</dd><dt>Years of welding</dt></div>
+        <div><dd>8</dd><dt>Years on one machine</dt></div>
+        <div><dd>3</dd><dt>Commercial brands</dt></div>
+        <div><dd>1</dd><dt>Municipal council</dt></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="block" id="about">
+    <div class="wrap split">
+      <h2>About</h2>
+      <div class="about-grid">
+        <div>
+          <p class="statement">I'm a welder, fabricator, and workshop supervisor. I read drawings, build frames, weld, bend, and assemble.</p>
+          <p class="muted">I also run the MEP-Engineering Program, where I share practical welding and fabrication knowledge.</p>
+        </div>
+        <figure class="shot sq" data-src="images/about.jpg" data-alt="Portrait at work">
+          <div class="frame"><span>Add photo (optional)<small>images/about.jpg</small></span></div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="block" id="work">
+    <div class="wrap">
+      <h2 style="margin-bottom: clamp(2rem, 5vw, 3.5rem)">Selected work</h2>
+
+      <div class="project-head">
+        <h3 style="font-size: clamp(1.8rem, 3.6vw, 2.8rem);">Organic waste composting machine</h3>
+        <p>8 years, from prototype to commercial product</p>
+      </div>
+
+      <div class="gens">
+        <article class="gen">
+          <figure class="shot" data-src="images/gen1-front.jpg" data-alt="Generation 1 machine">
+            <div class="frame"><span>Add photo<small>images/gen1-front.jpg</small></span></div>
+          </figure>
+          <p class="tag">Generation 1</p>
+          <h3>Prototype</h3>
+          <ul>
+            <li>Strong frame</li>
+            <li>Bolted control box</li>
+            <li>Outside wheels</li>
+          </ul>
+        </article>
+
+        <article class="gen">
+          <figure class="shot" data-src="images/gen2-front.jpg" data-alt="Generation 2 machine">
+            <div class="frame"><span>Add photo<small>images/gen2-front.jpg</small></span></div>
+          </figure>
+          <p class="tag">Generation 2</p>
+          <h3>Easier to use</h3>
+          <ul>
+            <li>Service panels</li>
+            <li>Sloped control panel</li>
+            <li>Tucked-in wheels</li>
+          </ul>
+        </article>
+
+        <article class="gen">
+          <figure class="shot" data-src="images/ddaun-front.jpg" data-alt="Generation 3 machine">
+            <div class="frame"><span>Add photo<small>images/ddaun-front.jpg</small></span></div>
+          </figure>
+          <p class="tag">Generation 3</p>
+          <h3>Ready to sell</h3>
+          <ul>
+            <li>Modular design</li>
+            <li>Two brand looks</li>
+            <li>Built for commercial use</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="brands">
+        <h3>Generation 3, two brands</h3>
+
+        <div class="brand-row">
+          <div>
+            <h3>D'DAUN</h3>
+            <ul>
+              <li>Satin stainless finish</li>
+              <li>Moisture-resistant</li>
+            </ul>
+          </div>
+          <div class="row-shots mix">
+            <figure class="shot" data-src="images/ddaun-exhibition.jpg" data-alt="D'DAUN machine at an exhibition">
+              <div class="frame"><span>Add photo<small>images/ddaun-exhibition.jpg</small></span></div>
+              <figcaption>At the exhibition</figcaption>
+            </figure>
+            <figure class="shot land" data-src="images/ddaun-photoshoot.jpg" data-alt="Machines set up for a photo shoot">
+              <div class="frame"><span>Add photo<small>images/ddaun-photoshoot.jpg</small></span></div>
+              <figcaption>Photo shoot day</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="brand-row">
+          <div>
+            <h3>Bio-Mate</h3>
+            <ul>
+              <li>Eco-vinyl wrap</li>
+              <li>Its own brand look</li>
+            </ul>
+          </div>
+          <div class="row-shots">
+            <figure class="shot land" data-src="images/biomate-1.jpg" data-alt="Bio-Mate machine">
+              <div class="frame"><span>Add photo<small>images/biomate-1.jpg</small></span></div>
+              <figcaption>Bio-Mate machine</figcaption>
+            </figure>
+            <figure class="shot land" data-src="images/biomate-2.jpg" data-alt="Bio-Mate machine, second view">
+              <div class="frame"><span>Add photo (optional)<small>images/biomate-2.jpg</small></span></div>
+              <figcaption>Another view</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+
+      <div class="strip-head">
+        <h3>Drawing to workshop</h3>
+        <p>Scroll sideways</p>
+      </div>
+    </div>
+    <div class="strip" tabindex="0" aria-label="Design and build photos">
+      <figure class="shot" data-src="images/cad-assembly.jpg" data-alt="Full 3D model of the machine">
+        <div class="frame"><span>Add photo<small>images/cad-assembly.jpg</small></span></div>
+        <figcaption>Full 3D model</figcaption>
+      </figure>
+      <figure class="shot fit" data-src="images/cad-exploded.jpg" data-alt="Exploded view of the machine">
+        <div class="frame"><span>Add photo<small>images/cad-exploded.jpg</small></span></div>
+        <figcaption>Exploded view</figcaption>
+      </figure>
+      <figure class="shot" data-src="images/build-frame.jpg" data-alt="Frame and drum during the build">
+        <div class="frame"><span>Add photo<small>images/build-frame.jpg</small></span></div>
+        <figcaption>Frame and drum</figcaption>
+      </figure>
+      <figure class="shot" data-src="images/build-shredder.jpg" data-alt="Shredder blades inside the tank">
+        <div class="frame"><span>Add photo<small>images/build-shredder.jpg</small></span></div>
+        <figcaption>Shredder blades</figcaption>
+      </figure>
+      <figure class="shot" data-src="images/build-chain-drive.jpg" data-alt="Chain drive from motor to drum">
+        <div class="frame"><span>Add photo<small>images/build-chain-drive.jpg</small></span></div>
+        <figcaption>Chain drive</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- PROBLEM SOLVING -->
+  <section class="panel" id="problem-solving">
+    <div class="wrap">
+      <h2>No laser cutter?<br>No problem.</h2>
+      <p class="lead">Outside laser cutting was too costly for our budget, so we used the tools we already had.</p>
+      <ol class="steps">
+        <li>
+          <h3>Draw it full size</h3>
+          <p>Turn the SolidWorks drawing into a real-size pattern.</p>
+        </li>
+        <li>
+          <h3>Cut by hand</h3>
+          <p>Shear, mark, bend, and check every part.</p>
+        </li>
+        <li>
+          <h3>Weld it tight</h3>
+          <p>TIG and MMA welds, sealed against leaks.</p>
+        </li>
+      </ol>
+      <p class="result">Lower cost. On-time delivery. Same quality for every brand.</p>
+    </div>
+  </section>
+
+  <!-- MORE WORK -->
+  <section class="wrap more" id="more">
+    <h2 style="margin-bottom: clamp(2rem, 5vw, 3.5rem)">More work</h2>
+
+    <article class="more-item">
+      <div>
+        <h3>Food and liquid waste bins</h3>
+        <p>Stainless steel bins made for the D'DAUN machines. Drawn and built in-house.</p>
+      </div>
+      <div class="row-shots">
+        <figure class="shot land" data-src="images/waste-bins.jpg" data-alt="Finished food and liquid waste bins">
+          <div class="frame"><span>Add photo<small>images/waste-bins.jpg</small></span></div>
+          <figcaption>The finished bins</figcaption>
+        </figure>
+        <figure class="shot land fit" data-src="images/waste-bin-drawing.jpg" data-alt="Drawing of the waste bin">
+          <div class="frame"><span>Add photo<small>images/waste-bin-drawing.jpg</small></span></div>
+          <figcaption>The drawing</figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <article class="more-item">
+      <div>
+        <h3>Safety rubbish chute</h3>
+        <p>Supplied to two construction sites over one year, with custom steel brackets.</p>
+      </div>
+      <div class="row-shots two">
+        <figure class="shot" data-src="images/chute-1.jpg" data-alt="Rubbish chute running down a building">
+          <div class="frame"><span>Add photo<small>images/chute-1.jpg</small></span></div>
+          <figcaption>On site</figcaption>
+        </figure>
+        <figure class="shot" data-src="images/chute-2.jpg" data-alt="Steel bracket holding the chute">
+          <div class="frame"><span>Add photo<small>images/chute-2.jpg</small></span></div>
+          <figcaption>Steel bracket</figcaption>
+        </figure>
+        <figure class="shot land fit span-all" data-src="images/chute-cad.jpg" data-alt="Bracket drawings in SolidWorks">
+          <div class="frame"><span>Add photo<small>images/chute-cad.jpg</small></span></div>
+          <figcaption>Bracket drawings</figcaption>
+        </figure>
+      </div>
+    </article>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="block" id="skills">
+    <div class="wrap split">
+      <h2>Skills</h2>
+      <div class="skill-groups">
+        <div>
+          <h3>Metals</h3>
+          <ul class="tags"><li>Carbon steel</li><li>Stainless 304 and 316</li><li>Aluminium</li></ul>
+        </div>
+        <div>
+          <h3>Welding</h3>
+          <ul class="tags"><li>TIG</li><li>MIG</li><li>MMA</li><li>AWS D1.1</li><li>AWS A3.0</li><li>AWS A2.4</li></ul>
+        </div>
+        <div>
+          <h3>Drawing and machines</h3>
+          <ul class="tags"><li>SolidWorks</li><li>Blueprints</li><li>Milling</li><li>Press brake</li></ul>
+        </div>
+        <div>
+          <h3>Leading</h3>
+          <ul class="tags"><li>Production planning</li><li>Team supervision</li><li>Workshop safety</li><li>Less waste</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HISTORY -->
+  <section class="block" id="history">
+    <div class="wrap split">
+      <h2>History</h2>
+      <ul class="history">
+        <li>
+          <span class="when">2019 to 2026</span>
+          <div>
+            <h3>Production Supervisor</h3>
+            <p>Imprexiz Resources. Led the fabrication and assembly teams.</p>
+          </div>
+        </li>
+        <li>
+          <span class="when">2018 to 2019</span>
+          <div>
+            <h3>Welding sub-contractor</h3>
+            <p>Production welding in four factories.</p>
+          </div>
+        </li>
+        <li>
+          <span class="when">2016 to 2017</span>
+          <div>
+            <h3>Construction sub-contractor</h3>
+            <p>Structural welding on active sites.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <h2>Need something built?</h2>
+      <a class="mail" href="mailto:akareztt@gmail.com">akareztt@gmail.com</a>
+      <ul class="contact-list">
+        <li><a href="tel:+601169630152">+60 11-6963 0152</a></li>
+        <li>Malaysia</li>
+        <li>English, Malay</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">&copy; 2026 Your Name</div>
+</footer>
+
+<script>
+  // Photos: save a file with the exact name shown in each grey box into the images folder.
+  // If the file exists it replaces the box automatically. If not, the box stays.
+  document.querySelectorAll('.shot[data-src]').forEach(function (shot) {
+    var img = new Image();
+    img.alt = shot.getAttribute('data-alt') || '';
+    img.loading = 'lazy';
+    img.onload = function () {
+      var frame = shot.querySelector('.frame');
+      frame.textContent = '';
+      frame.appendChild(img);
+    };
+    img.src = shot.getAttribute('data-src');
+  });
+</script>
+</body>
+</html>
